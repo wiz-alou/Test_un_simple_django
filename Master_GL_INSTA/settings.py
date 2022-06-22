@@ -86,11 +86,25 @@ WSGI_APPLICATION = 'Master_GL_INSTA.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-
+#postgres://bvudgishxcnoia:9d55fad0205ed699c45793f48cbd65f8a4716a34b251c5bc9fe1ec29e23a932a@
+#ec2-52-4-104-184.compute-1.amazonaws.com:5432/d3nu4tmfqmt19j
 
 DATABASES = {
-    'default': dj_database_url.config()
+    'default': {
+        'ENGINE':'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd3nu4tmfqmt19j',
+        'USER': 'bvudgishxcnoia',
+        'PASSWORD': '9d55fad0205ed699c45793f48cbd65f8a4716a34b251c5bc9fe1ec29e23a932a',
+        'HOST': 'ec2-52-4-104-184.compute-1.amazonaws.com',
+        'PORT': 5432,
+        
+
+    }
 }
+ 
+# DATABASES = {
+#     'default': dj_database_url.config()
+# }
 
 
 # Password validation
