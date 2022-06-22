@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 from django.contrib import messages
-# import django_heroku
+import django_heroku
 
 
 
@@ -166,4 +166,4 @@ LOGIN_REDIRECT_URL='home'
 LOGOUT_URL='logout'
 LOGOUT_REDIRECT_URL='login'
 
-# django_heroku.settings(locals())
+django_heroku.settings(locals())
