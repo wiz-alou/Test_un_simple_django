@@ -3,11 +3,10 @@
 {% block content %}
 
     {{user.username}}
-    
+
     <form action="{% url 'logout'%}" method="POST">
         {% csrf_token %}
         <input type="submit" value="Deconnexion" class="btn btn-info">
 
     </form>
-    <p>GIVE THANKS TO ALLAH</p>
 {%endblock%}
