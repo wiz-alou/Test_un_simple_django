@@ -92,8 +92,8 @@ WSGI_APPLICATION = 'Master_GL_INSTA.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE':'django.db.backends.postgresql_psycopg2',
-        'USER': 'd3nu4tmfqmt19j',
-        'NAME': 'bvudgishxcnoia',
+        'NAME': 'd3nu4tmfqmt19j',
+        'USER': 'bvudgishxcnoia',
         'PASSWORD': '9d55fad0205ed699c45793f48cbd65f8a4716a34b251c5bc9fe1ec29e23a932a',
         'HOST': 'ec2-52-4-104-184.compute-1.amazonaws.com',
         'PORT': 5432,
