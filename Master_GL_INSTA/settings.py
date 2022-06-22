@@ -9,11 +9,12 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
 import os
 from pathlib import Path
 from django.contrib import messages
-import django_on_heroku
+import dj_database_url
+import django_heroku
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -21,15 +22,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
+# See https://docs.djangopr oject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY =os.environ('SECRET_KEY')
+SECRET_KEY = 'django-insecure-uibr3*v0ic_r&r$h4x3=9)7x-k=uac9!1239s20o*7_c%yj%9j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://authentification-master-gl-ut.herokuapp.com/']
+ALLOWED_HOSTS = ['authentification-master-gl-ut.herokuapp.com','127.0.0.1']
 
 
 # Application definition
@@ -52,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+     "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = 'Master_GL_INSTA.urls'
@@ -78,12 +80,31 @@ WSGI_APPLICATION = 'Master_GL_INSTA.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+DATABASES={
+   'default':{
+      'ENGINE':'django.db.backends.sqlite3',
+      'NAME':os.path.join(BASE_DIR,'db.sqlite3'),
+   }
 }
+#postgres://bvudgishxcnoia:9d55fad0205ed699c45793f48cbd65f8a4716a34b251c5bc9fe1ec29e23a932a@
+#ec2-52-4-104-184.compute-1.amazonaws.com:5432/d3nu4tmfqmt19j
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE':'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'd3nu4tmfqmt19j',
+#         'USER': 'bvudgishxcnoia',
+#         'PASSWORD': '9d55fad0205ed699c45793f48cbd65f8a4716a34b251c5bc9fe1ec29e23a932a',
+#         'HOST': 'ec2-52-4-104-184.compute-1.amazonaws.com',
+#         'PORT': 5432,
+        
+
+#     }
+# }
+ 
+# DATABASES = {
+#     'default': dj_database_url.config()
+# }
 
 
 # Password validation
@@ -108,8 +129,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-#LANGUAGE_CODE = 'en-us'
-LANGUAGE_CODE = 'fr-fr'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
@@ -121,6 +141,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = 'static/'
 STATICFILES_DIRS=[
 os.path.join(BASE_DIR,'static')
@@ -146,4 +168,4 @@ LOGIN_REDIRECT_URL='home'
 LOGOUT_URL='logout'
 LOGOUT_REDIRECT_URL='login'
 
-django_on_heroku.settings(locals())
+django_heroku.settings(locals())
