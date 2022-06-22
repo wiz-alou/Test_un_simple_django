@@ -1,4 +1,4 @@
 release: python manage.py makemigrations --no-input
 release: python manage.py migrate --no-input
 
-web: gunicorn Master_GL_INSTA.wsgi:application --log-file -
+web: gunicorn Master_GL_INSTA.wsgi
