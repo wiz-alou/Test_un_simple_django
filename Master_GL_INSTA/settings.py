@@ -95,7 +95,7 @@ DATABASES = {
         'NAME': 'd3nu4tmfqmt19j',
         'USER': 'bvudgishxcnoia',
         'PASSWORD': '9d55fad0205ed699c45793f48cbd65f8a4716a34b251c5bc9fe1ec29e23a932a',
-        'HOST': 'ec2-52-4-104-184.compute-1.amazonaws.com',
+        'HOST': 'ec2-ec2-52-4-104-184.compute-1.amazonaws.com',
         'PORT': 5432,
         
 
