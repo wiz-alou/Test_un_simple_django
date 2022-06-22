@@ -14,7 +14,7 @@ import os
 from pathlib import Path
 from django.contrib import messages
 import django_on_heroku
-django_on_heroku.settings(locals())
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,7 +29,7 @@ SECRET_KEY =os.environ('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://authentification-master-gl-ut.herokuapp.com/']
 
 
 # Application definition
@@ -145,3 +145,5 @@ LOGIN_URL='login'
 LOGIN_REDIRECT_URL='home'
 LOGOUT_URL='logout'
 LOGOUT_REDIRECT_URL='login'
+
+django_on_heroku.settings(locals())
