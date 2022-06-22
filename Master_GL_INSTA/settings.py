@@ -10,14 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
-from pathlib import Path
 from django.contrib import messages
 import django_heroku
-django_heroku.settings(locals())
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -145,3 +143,4 @@ LOGIN_URL='login'
 LOGIN_REDIRECT_URL='home'
 LOGOUT_URL='logout'
 LOGOUT_REDIRECT_URL='login'
+django_heroku.settings(locals())
