@@ -11,6 +11,7 @@ class BaseTest(TestCase):
     def setUp(self):
         self.register_url=reverse('register')
         self.login_url=reverse('login')
+        #pour test l'inscription du user
         self.user={
             'email':'testemail@gmail.com',
             'username':'username',
@@ -44,23 +45,28 @@ class BaseTest(TestCase):
         }
         return super().setUp()
 
+#on test l'inscritpion ici
+#d'abord est le user peut voir la page avec la fonction assertEqual 
+#ensuite on test le templates
 class RegisterTest(BaseTest):
+#test de la page
    def test_can_view_page_correctement(self):
        response=self.client.get(self.register_url)
        self.assertEqual(response.status_code,200)
        self.assertTemplateUsed(response,'auth/register.html')
-
+# test de l'inscription
    def test_can_register_user(self):
         response=self.client.post(self.register_url,self.user,format='text/html')
         self.assertEqual(response.status_code,302)
-
+# ici on test si le mot passe corresponda au critere
    def test_cant_register_user_withshortpassword(self):
         response=self.client.post(self.register_url,self.user_short_password,format='text/html')
         self.assertEqual(response.status_code,400)
-
+# on test si les mot de passe correspond
    def test_cant_register_user_with_unmatching_passwords(self):
         response=self.client.post(self.register_url,self.user_unmatching_password,format='text/html')
         self.assertEqual(response.status_code,400)
+        #ici on test si l'email est invalide
    def test_cant_register_user_with_invalid_email(self):
         response=self.client.post(self.register_url,self.user_invalid_email,format='text/html')
         self.assertEqual(response.status_code,400)
@@ -71,25 +77,31 @@ class RegisterTest(BaseTest):
         self.assertEqual(response.status_code,400)
 
 class LoginTest(BaseTest):
+    #on test si la page peut etre acceder
     def test_can_access_page(self):
         response=self.client.get(self.login_url)
         self.assertEqual(response.status_code,200)
         self.assertTemplateUsed(response,'auth/login.html')
+        #on test si la connexion passe
     def test_login_success(self):
+        #on cree un user puis on l'active
         self.client.post(self.register_url,self.user,format='text/html')
         user=User.objects.filter(email=self.user['email']).first()
         user.is_active=True
         user.save()
+        #ici on login le user
         response= self.client.post(self.login_url,self.user,format='text/html')
         self.assertEqual(response.status_code,302)
+    #ici on creer le user sans verifier l'email
     def test_cantlogin_with_unverified_email(self):
         self.client.post(self.register_url,self.user,format='text/html')
         response= self.client.post(self.login_url,self.user,format='text/html')
         self.assertEqual(response.status_code,302)
-
+#le user sans nom utilisateur
     def test_cantlogin_with_no_username(self):
         response= self.client.post(self.login_url,{'password':'passwped','username':''},format='text/html')
         self.assertEqual(response.status_code,401)
+        #le user sans MP
     def test_cantlogin_with_no_password(self):
         response= self.client.post(self.login_url,{'username':'passwped','password':''},format='text/html')
         self.assertEqual(response.status_code,401)
