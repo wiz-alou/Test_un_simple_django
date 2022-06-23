@@ -12,8 +12,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 from django.contrib import messages
-# import django_heroku
-# django_heroku.settings(locals())
+import django_heroku
+django_heroku.settings(locals())
 
 
 
@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['authentification-master-gl-ut.herokuapp.com','127.0.0.1','https://master-gl.herokuapp.com/']
+ALLOWED_HOSTS = ['authentification-master-gl-ut.herokuapp.com','127.0.0.1','https://master-gl.herokuapp.com/','https://test-master-gl.herokuapp.com/']
 
 
 # Application definition
