@@ -12,7 +12,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 from django.contrib import messages
-import django_heroku
+# import django_heroku
+# django_heroku.settings(locals())
 
 
 
@@ -23,8 +24,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangopr oject.com/en/4.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-uibr3*v0ic_r&r$h4x3=9)7x-k=uac9!1239s20o*7_c%yj%9j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -167,4 +166,5 @@ LOGIN_REDIRECT_URL='home'
 LOGOUT_URL='logout'
 LOGOUT_REDIRECT_URL='login'
 
-django_heroku.settings(locals())
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'django-insecure-uibr3*v0ic_r&r$h4x3=9)7x-k=uac9!1239s20o*7_c%yj%9j'
